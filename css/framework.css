@@ -1,6 +1,17 @@
 img {
 	max-width: 100%;
 }
+
+button {
+	font-size: 1em;
+	padding: calc(var(--base-padding) / 2);
+	border-radius: var(--base-border-radius);
+	background-color: var(--color-button);
+	color: var(--color-button-text);
+	border: none;
+	border-right: solid calc(var(--base-padding) / 4) var(--color-button-text);
+	border-bottom: solid calc(var(--base-padding) / 4) var(--color-button-text);
+}
 .animate {
 	transition: all 0.5s;
 }

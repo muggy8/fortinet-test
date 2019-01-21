@@ -19,3 +19,93 @@ html {
 	--base-padding: 0.5rem;
 	--base-border-radius: 0.2em;
 }
+
+/*
+
+These are the colors that are responsible for the primary theme of the component and is inheritable by child elements. if anything needs to be overridden then they can be done with more spicific classes being the "color-{{color}}" and "button-{{color}}"
+
+color-{{color}} will change the text color
+
+button-{{color}} will change the button to a color and the text to match the color of the button
+
+*/
+.bg-white {
+	--color-background: var(--color-white);
+	--color-text: var(--color-black);
+	--color-button: var(--color-light);
+	--color-button-text: var(--color-primary);
+}
+.bg-light {
+	--color-background: var(--color-light);
+	--color-text: var(--color-black);
+	--color-button: var(--color-mid);
+	--color-button-text: var(--color-primary);
+}
+.bg-mid {
+	--color-background: var(--color-mid);
+	--color-text: var(--color-white);
+	--color-button: var(--color-white);
+	--color-button-text: var(--color-primary);
+}
+.bg-dark {
+	--color-background: var(--color-dark);
+	--color-text: var(--color-white);
+	--color-button: var(--color-light);
+	--color-button-text: var(--color-primary);
+}
+.bg-primary {
+	--color-background: var(--color-primary);
+	--color-text: var(--color-white);
+	--color-button: var(--color-white);
+	--color-button-text: var(--color-secondary);
+}
+.bg-secondary {
+	--color-background: var(--color-secondary);
+	--color-text: var(--color-black);
+	--color-button: var(--color-white);
+	--color-button-text: var(--color-primary);
+}
+
+.color-white {
+	--color-text: var(--color-white);
+}
+.color-mid {
+	--color-text: var(--color-mid);
+}
+.color-light {
+	--color-text: var(--color-light);
+}
+.color-dark {
+	--color-text: var(--color-dark);
+}
+.color-primary {
+	--color-text: var(--color-primary);
+}
+.color-secondary {
+	--color-text: var(--color-secondary);
+}
+
+.button-white {
+	--color-button: var(--color-white);
+	--color-button-text: var(--color-primary);
+}
+.button-mid {
+	--color-button: var(--color-mid);
+	--color-button-text: var(--color-primary);
+}
+.button-light {
+	--color-button: var(--color-light);
+	--color-button-text: var(--color-primary);
+}
+.button-dark {
+	--color-button: var(--color-dark);
+	--color-button-text: var(--color-primary);
+}
+.button-primary {
+	--color-button: var(--color-primary);
+	--color-button-text: var(--color-secondary);
+}
+.button-secondary {
+	--color-button: var(--color-secondary);
+	--color-button-text: var(--color-primary);
+}
