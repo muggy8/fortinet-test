@@ -1,5 +1,62 @@
 "use strict"
 angular.module("uploader-app")
-	.service("api", ["$http", function($http){
+	.factory("api", ["$http", "$q", "api-url", function($http, $q, apiUrl){
+		let api = {}
 
+		api.list = function(){
+			return $http({
+				method: "GET",
+				url: `${apiUrl}/list.php`
+			})
+		}
+
+		api.upload = function(files){
+			return $q.all(files.map(function(file){
+				return $http({
+					method: "POST",
+					url: `${apiUrl}/upload.php`,
+					data: file
+				})
+			}))
+		}
+		api.uploadParallel = api.upload
+
+		api.uploadSequence = function(files){
+			return files.reduce(function(currentResolvingPromise, file){
+				return currentResolvingPromise.then(function(arrayOfResults){
+					return $http({
+						method: "POST",
+						url: `${apiUrl}/upload.php`,
+						data: file
+					}).then(function(result){
+						arrayOfResults.push(result)
+						return arrayOfResults
+					})
+				})
+			}, $q.resolve([]))
+		}
+
+		api.download = function(fileName){
+
+		}
+
+		api.rename = function(oldName, newName){
+			return $http({
+				method: "POST",
+				url: `${apiUrl}/rename.php`,
+				data: {
+					oldName: oldName,
+					newName: newName
+				}
+			})
+		}
+
+		api.delete = function(fileName){
+			return $http({
+				method: "DELETE",
+				url: `${apiUrl}/delete.php?file=${fileName}`,
+			})
+		}
+
+		return api
 	}])
