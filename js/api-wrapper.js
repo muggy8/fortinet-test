@@ -10,6 +10,16 @@ angular.module("uploader-app")
 			})
 		}
 
+		api.createFolder = function(path, name){
+			return $http({
+				method: "POST",
+				url: `${apiUrl}/create-folder.php`,
+				data: {
+					path: `${path}/${name}`
+				}
+			})
+		}
+
 		api.upload = function(files){
 			return $q.all(files.map(function(file){
 				return $http({
