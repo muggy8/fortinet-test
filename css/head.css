@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+html, body, main {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--color-background);
+	color: var(--color-text);
+	position: relative;
+}
+
+html {
+	font-family: sans-serif;
+}
+
+main:empty::after {
+	content: " ";
+	display: block;
+	left: calc(50% - 2em);
+	top: calc(50% - 2em);
+	position: absolute;
+
+	width: 3em;
+	height: 3em;
+	border-radius: 5em;
+	border: solid 0.75em var(--color-clear);
+	border-top-color: var(--color-primary);
+
+	-webkit-animation-name: spin;
+	animation-name: spin;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotateZ(0deg);
+        transform: rotateZ(0deg)
+    }
+    100% {
+        -webkit-transform: rotateZ(360deg);
+        transform: rotateZ(360deg)
+    }
+}

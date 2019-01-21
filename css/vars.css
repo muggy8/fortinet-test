@@ -1,0 +1,21 @@
+html {
+	--color-white: #FFF;
+	--color-light: #D5D5D5;
+	--color-mid: #B2B2B2;
+	--color-low: #9C9C9C;
+	--color-dark: #333;
+	--color-black: #000;
+
+	--color-primary: #4C9F2D;
+	--color-secondary: #ACD4E3;
+	--color-clear: rgba(0, 0, 0, 0);
+
+	/* now we've set up the basic background we can go and setup some other variables based on these */
+
+	--color-background: var(--color-white);
+	--color-text: var(--color-black);
+	--color-button: var(--color-light);
+	--color-button-text: var(--color-primary);
+	--base-padding: 0.5rem;
+	--base-border-radius: 0.2em;
+}
