@@ -3,10 +3,10 @@ angular.module("uploader-app")
 	.factory("api", ["$http", "$q", "api-url", function($http, $q, apiUrl){
 		let api = {}
 
-		api.list = function(){
+		api.list = function(path){
 			return $http({
 				method: "GET",
-				url: `${apiUrl}/list.php`
+				url: `${apiUrl}/list.php?path=${path}`
 			})
 		}
 

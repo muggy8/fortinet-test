@@ -19,7 +19,20 @@
 	</head>
 	<body>
 
-		<main ng-app="uploader-app" ng-controller="app-controller"></main>
+		<main ng-app="uploader-app" ng-controller="app-controller" class="flex column">
+			<nav class="flex-mid">
+				<div class="grow flex">
+					/
+					<span ng-repeat="part in pathParts">
+						<a>{{part}}/</a>
+					</span>
+				</div>
+				<div>
+					<button>Create Folder</button>
+					<button>Upload File</button>
+				</div>
+			</nav>
+		</main>
 
 		<link rel="stylesheet" href="css/framework.css">
 
