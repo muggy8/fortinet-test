@@ -17,6 +17,7 @@ html {
 	--color-button: var(--color-light);
 	--color-button-text: var(--color-primary);
 	--base-padding: 0.5rem;
+	--responsive-padding: 0.5em;
 	--base-border-radius: 0.2em;
 }
 
