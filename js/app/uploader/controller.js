@@ -12,11 +12,19 @@ angular.module("uploader-app")
 
 		function addFiles(files){
 			Array.prototype.forEach.call(files, function(file){
-				scope.files.push({
-					progres: 0,
+				let fileModel = {
+					progress: 0,
 					file: file,
-					name: file.name
-				})
+					name: file.name,
+					uploadEventHandlers: {
+						progress: function(event){
+							fileModel.progress = Math.floor((event.loaded / event.total) * 100)
+
+							console.log(event, fileModel.progress)
+						}
+					}
+				}
+				scope.files.push(fileModel)
 			})
 		}
 
@@ -41,6 +49,34 @@ angular.module("uploader-app")
 
 				scope.$apply()
 			}
+		}
+
+		let uploading = false
+		scope.canShowUploadButton = function(){
+			if (!scope.files.length){
+				return false
+			}
+
+			if (uploading){
+				return false
+			}
+
+			let allUploaded = scope.files.reduce(function(assumption, currentFile){
+				return assumption && currentFile.progress === 100
+			}, true)
+
+			if (allUploaded){
+				return false
+			}
+
+			return true
+		}
+
+		scope.upload = function(){
+			uploading = true
+			api.upload(scope.files).then(function(){
+				uploading = false
+			})
 		}
 
 	}])

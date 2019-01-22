@@ -25,7 +25,8 @@ angular.module("uploader-app")
 				return $http({
 					method: "POST",
 					url: `${apiUrl}/upload.php`,
-					data: file
+					data: file.file,
+					uploadEventHandlers: file.uploadEventHandlers
 				})
 			}))
 		}
@@ -37,7 +38,8 @@ angular.module("uploader-app")
 					return $http({
 						method: "POST",
 						url: `${apiUrl}/upload.php`,
-						data: file
+						data: file.file,
+						uploadEventHandlers: file.uploadEventHandlers
 					}).then(function(result){
 						arrayOfResults.push(result)
 						return arrayOfResults
