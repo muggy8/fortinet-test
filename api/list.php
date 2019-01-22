@@ -17,7 +17,7 @@ $contents = scandir($path);
 
 // we dont want . and ..
 $contents = array_filter($contents, function($relPath){
-	if ($relPath === "." || $relPath === ".."){
+	if ($relPath === "." || $relPath === ".." || $relPath === METADATA_FILE){
 		return false;
 	}
 	return true;

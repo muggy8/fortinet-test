@@ -30,6 +30,7 @@ function isGet($exclusive){
 }
 
 define("CONTENT_FOLDER", dirname(__DIR__) . "/files");
+define("METADATA_FILE", ".META_STORE");
 
 if (!file_exists(CONTENT_FOLDER)){
 	mkdir(CONTENT_FOLDER, 0766);
