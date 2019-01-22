@@ -30,3 +30,7 @@ function isGet($exclusive){
 }
 
 define("CONTENT_FOLDER", dirname(__DIR__) . "/files");
+
+if (!file_exists(CONTENT_FOLDER)){
+	mkdir(CONTENT_FOLDER, 0766);
+}

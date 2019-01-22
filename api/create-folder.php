@@ -5,10 +5,6 @@ isPost(true);
 $content = file_get_contents("php://input");
 $body = json_decode($content, true);
 
-if (!file_exists(CONTENT_FOLDER)){
-	mkdir(CONTENT_FOLDER, 0766);
-}
-
 if (file_exists(CONTENT_FOLDER . $body["path"])){
 	http_response_code(409);
 	echo json_encode([
