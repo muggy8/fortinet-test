@@ -79,4 +79,8 @@ angular.module("uploader-app")
 			})
 		}
 
+		scope.close = function(){
+			$dialogue.accept()
+		}
+
 	}])
