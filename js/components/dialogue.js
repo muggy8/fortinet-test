@@ -17,7 +17,7 @@ angular.module("components")
 						return lastPromise.then(function(){
 							return resolve[resolveKey]()
 						}).then(function(result){
-							if (result.data){
+							if (Object.prototype.hasOwnProperty.call(result, "data")){
 								resolve[resolveKey] = result.data
 							}
 							else{
