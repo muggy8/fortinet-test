@@ -44,6 +44,9 @@
 							Name
 						</th>
 						<th>
+							Original Name
+						</th>
+						<th>
 							Actions
 						</th>
 					</tr>
@@ -52,8 +55,12 @@
 					<tr ng-repeat="content in filesList" ng-class="{
 						'bg-secondary': $even
 					}">
+						<td class="padding-left-1">
+							<a href="#" ng-click="open(content)" class="inline block" ng-show="content.type === 'dir'">{{content.name}}</a>
+							<span ng-show="content.type === 'file'">{{content.name}}</span>
+						</td>
 						<td>
-							<a href="#" ng-click="open(content)" class="margin-1 inline block">{{content.name}}</a>
+							<span ng-show="content.type === 'file'">{{content.srcName}}</span>
 						</td>
 						<td class="text-right">
 							<a href="#" class="margin-1 block inline-mid" ng-show="content.type === 'file'">Download</a>
