@@ -34,6 +34,15 @@ angular.module("uploader-app")
 			}).then(function(fileName){
 				return api.createFolder(getPathUrl(), fileName)
 			}, function(err){
+				// this is to catch the dialogue rejections
+				console.warn(err)
+			}).catch(function(err){
+				// this is to catch the http errors
+				return dialogue({
+					template: err.data.message
+				})
+			}).catch(function(err){
+				// this is to catch the dialogue rejections
 				console.warn(err)
 			})
 		}
