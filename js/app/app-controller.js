@@ -15,7 +15,7 @@ angular.module("uploader-app")
 
 		scope.listFiles = function(){
 			let pathUrl = getPathUrl()
-
+			scope.filesList = []
 			return api.list(pathUrl).then(function(result){
 				scope.filesList = result.data
 				return result
@@ -52,6 +52,36 @@ angular.module("uploader-app")
 				scope.pathParts.push(dirOrFile.name)
 				scope.listFiles()
 			}
+		}
+
+		scope.delete = function(dirOrFile){
+			dialogue({
+				template: `
+					<div>
+						<div>Are You sure you want to delete ${dirOrFile.name}
+						</div>
+						<div class="flex margin-top">
+							<button class="grow" ng-click="accept()">Delete</button>
+							<div class="padding-left"></div>
+							<button class="grow" ng-click="reject('cancel')">Cancle</button>
+						</div>
+					</div>
+				`
+			}).then(function(){
+				// users says they're sure about the deletion sooo...
+
+				return api.delete(getPathUrl() + dirOrFile.name)
+			}, function(cancled){
+				// good call not deleteing things
+			}).then(function(){
+				return scope.listFiles()
+			}, function(err){
+				return dialogue({
+					template: err.data.message
+				})
+			}).catch(function(cancled){
+				// ok
+			})
 		}
 
 		scope.backOne = function(){
