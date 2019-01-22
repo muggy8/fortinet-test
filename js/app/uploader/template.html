@@ -16,7 +16,7 @@
 			<button class="font-0.75em" ng-click="file.renaming = !file.renaming" ng-show="file.progress !== 100">Rename</button>
 		</div>
 		<div ng-show="file.error" class="padding-left padding-right">
-			<small class="color-error">{{file.error.message}}</small>
+			<small class="color-error">{{file.error.message || 'Network error'}}</small>
 		</div>
 	</div>
 	<div class="margin-top flex">
