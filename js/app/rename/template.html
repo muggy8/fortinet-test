@@ -1,0 +1,9 @@
+<div class="flex-mid vcenter">
+	<div class="padding-right-1">
+		Name:
+	</div>
+	<div>
+		<input ng-model="fileName" type="text" ng-keyup="$event.keyCode === 13 && rename()" load-focus/>
+		<button ng-show="fileName && validPaturn.test(fileName)" ng-click="rename()">Rename</button>
+	</div>
+</div>

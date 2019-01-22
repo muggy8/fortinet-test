@@ -64,7 +64,7 @@
 						</td>
 						<td class="text-right">
 							<a href="#" class="margin-1 block inline-mid" ng-show="content.type === 'file'">Download</a>
-							<a href="#" class="margin-1 block inline-mid">Rename</a>
+							<a href="#" class="margin-1 block inline-mid" ng-click="rename(content)">Rename</a>
 							<a href="#" class="margin-1 block inline-mid" ng-click="delete(content)">Delete</a>
 						</td>
 					</tr>
@@ -80,6 +80,7 @@
 		<script type="text/javascript" src="js/app/app-controller.js"></script>
 		<script type="text/javascript" src="js/app/create-folder/controller.js"></script>
 		<script type="text/javascript" src="js/app/uploader/controller.js"></script>
+		<script type="text/javascript" src="js/app/rename/controller.js"></script>
 
 		<script type="text/javascript" src="js/components/components.js"></script>
 		<script type="text/javascript" src="js/components/dialogue.js"></script>

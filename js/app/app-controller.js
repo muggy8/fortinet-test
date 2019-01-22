@@ -84,6 +84,20 @@ angular.module("uploader-app")
 			})
 		}
 
+		scope.rename = function(dirOrFile){
+			dialogue({
+				templateUrl: "js/app/rename/template.html",
+				controller: "rename-controller",
+				resolve: {
+					currentName: function(){
+						return dirOrFile.name
+					}
+				}
+			}).then(console.log, function(cancled){
+				// ok
+			})
+		}
+
 		scope.backOne = function(){
 			scope.pathParts.splice(scope.pathParts.length - 1, 1)
 			scope.listFiles()
