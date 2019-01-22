@@ -12,8 +12,9 @@ angular.module("uploader-app")
 				return totalUrl + `${currentPart}/`
 			}, "/")
 
-			api.list(pathUrl).then(function(result){
+			return api.list(pathUrl).then(function(result){
 				scope.filesList = result.data
+				return result
 			})
 		}
 
@@ -21,9 +22,10 @@ angular.module("uploader-app")
 
 		scope.createFolder = function(){
 			dialogue({
-				template: "<div>placeholder</div>",
-				controller: function($scope, $dialogue){
-
+				templateUrl: "js/app/create-folder/template.html",
+				controller: "create-folder-controller",
+				resolve: {
+					currentContents: scope.listFiles
 				}
 			})
 		}
