@@ -21,6 +21,7 @@ angular.module("uploader-app")
 		}
 
 		api.upload = function(folder, files){
+			let hasError = false
 			return $q.all(files.map(function(file){
 
 				let formData = new FormData()
@@ -36,8 +37,21 @@ angular.module("uploader-app")
 					url: `${apiUrl}/upload.php`,
 					data: formData,
 					uploadEventHandlers: file.uploadEventHandlers
+				}).catch(function(error){
+					// this will allow the errors to pass through and not trigger the promise.all till the end
+					hasError = true
+					error.error = true
+					error.source = file
+					return error
 				})
-			}))
+			})).then(function(results){
+				if (hasError){
+					return $q.reject(results)
+				}
+				else{
+					return $q.resolve(results)
+				}
+			})
 		}
 
 		api.download = function(fileName){

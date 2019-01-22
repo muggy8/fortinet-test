@@ -19,6 +19,8 @@ html {
 	--base-padding: 0.5rem;
 	--responsive-padding: 0.5em;
 	--base-border-radius: 0.2em;
+
+	--color-error: #FF4444;
 }
 
 /*
@@ -85,6 +87,9 @@ button-{{color}} will change the button to a color and the text to match the col
 .color-secondary {
 	--color-text: var(--color-secondary);
 }
+.color-error {
+	--color-text: var(--color-error);
+}
 
 .button-white {
 	--color-button: var(--color-white);
@@ -109,4 +114,9 @@ button-{{color}} will change the button to a color and the text to match the col
 .button-secondary {
 	--color-button: var(--color-secondary);
 	--color-button-text: var(--color-primary);
+}
+
+.button-error {
+	--color-button: var(--color-error);
+	--color-button-text: var(--color-dark);
 }

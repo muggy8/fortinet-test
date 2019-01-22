@@ -76,6 +76,20 @@ angular.module("uploader-app")
 			uploading = true
 			api.upload(folder, scope.files).then(function(){
 				uploading = false
+				scope.close()
+			}, function(errors){
+				// something happened with the results and we now have a some errors.
+				errors.forEach(function(result){
+					if (result.error){
+						result.source.progress = 0
+						result.source.error = result.data
+					}
+				})
+			}).then(function(){
+				// get rid of uploaded files
+				scope.files = scope.files.filter(function(file){
+					return file.progress === 0
+				})
 			})
 		}
 
