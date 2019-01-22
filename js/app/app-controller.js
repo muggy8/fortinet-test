@@ -1,6 +1,6 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("app-controller", ["$scope", "api", function($scope, api){
+	.controller("app-controller", ["$scope", "api", "dialogue", "$timeout", function($scope, api, dialogue, $timeout){
 		let scope = $scope
 
 		scope.pathParts = []
@@ -18,5 +18,19 @@ angular.module("uploader-app")
 		}
 
 		scope.listFiles()
+
+		scope.createFolder = function(){
+			dialogue({
+				template: "<div>placeholder</div>",
+				controller: function($scope, $dialogue){
+					console.log("controller instantiated", arguments)
+					$scope.foo = "bar"
+
+					$timeout(function(){
+						$dialogue.accept("foo")
+					}, 5000)
+				}
+			})
+		}
 
 	}])

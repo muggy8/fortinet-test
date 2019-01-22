@@ -26,29 +26,35 @@ angular.module("components")
 						})
 					}, toResolve)
 			}
+			else{
+				resolve = {}
+			}
 
 			// everything should be resolved now
 			return toResolve.then(function(){
 				return $q(function(accept, reject){
-					resolve.scope = Object.create($rootScope)
+					resolve.$scope = Object.create($rootScope)
+
 					resolve.$dialogue = {
 						accept: function(result){
-							document.body.removeChild(element)
+							element.remove()
 							accept(result)
 						},
 						reject: function(reason){
-							document.body.removeChild(element)
+							element.remove()
 							reject(reason)
 						}
 					}
 
-					let scope = $controller(controller, resolve)
+					let controllerInstance = $controller(controller || function(){}, resolve)
 
 					let linkFn = $compile(template)
 
-					let element = linkFn(scope)
+					let element = linkFn(resolve.$scope)
 
-					document.body.appendChild(element)
+					console.log(resolve.$scope, element)
+
+		 			angular.element(document.body).append(element)
 				})
 			})
 		}
