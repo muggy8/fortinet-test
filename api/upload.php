@@ -42,12 +42,12 @@ if ($newName){
 	file_put_contents(
 		$containingFolderMetaDataPath,
 		json_encode($containingFolderMetaData)
-	);	
+	);
 }
 
 // ok now we're done with all that, we can then proceed to do the uploader things
 $uploader = new Uploader();
-$uploadStatus = $uploader->upload($file, [
+$uploadConfigs = [
 	"extensions" => [
 		"css",
 		"html",
@@ -55,10 +55,17 @@ $uploadStatus = $uploader->upload($file, [
 		"js"
 	],
 	"uploadDir" => $fileFolder,
-	"title" => $newName ?: $originalName,
+	// "title" => $newName ?: $originalName,
 	"replace" => true,
 	"perms" => 766
-]);
+];
+
+
+$titleInfo = pathinfo($newName ?: $originalName);
+$uploadConfigs["title"] = $titleInfo["filename"];
+
+
+$uploadStatus = $uploader->upload($file, $uploadConfigs);
 
 $output = [];
 if($uploadStatus['hasErrors']){
