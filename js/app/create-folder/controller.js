@@ -1,6 +1,6 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("create-folder-controller", ["$scope", "$dialogue", "api", "dialogue", "currentContents", function($scope, $dialogue, api, dialogue, currentContents){
+	.controller("create-folder-controller", ["$scope", "$dialogue", "dialogue", "currentContents", function($scope, $dialogue, dialogue, currentContents){
 		let scope = $scope
 		currentContents = currentContents || []
 
