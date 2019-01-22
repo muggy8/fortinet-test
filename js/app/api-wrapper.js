@@ -20,12 +20,14 @@ angular.module("uploader-app")
 			})
 		}
 
-		api.upload = function(files){
+		api.upload = function(folder, files){
 			return $q.all(files.map(function(file){
 
 				let formData = new FormData()
 				formData.append("file", file.file)
 				formData.append("name", file.name)
+				formData.append("folder", folder)
+
 				return $http({
 					headers: {
 						"Content-Type": undefined
@@ -36,23 +38,6 @@ angular.module("uploader-app")
 					uploadEventHandlers: file.uploadEventHandlers
 				})
 			}))
-		}
-		api.uploadParallel = api.upload
-
-		api.uploadSequence = function(files){
-			return files.reduce(function(currentResolvingPromise, file){
-				return currentResolvingPromise.then(function(arrayOfResults){
-					return $http({
-						method: "POST",
-						url: `${apiUrl}/upload.php`,
-						data: file.file,
-						uploadEventHandlers: file.uploadEventHandlers
-					}).then(function(result){
-						arrayOfResults.push(result)
-						return arrayOfResults
-					})
-				})
-			}, $q.resolve([]))
 		}
 
 		api.download = function(fileName){

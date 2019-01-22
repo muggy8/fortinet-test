@@ -1,6 +1,6 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("uploader-controller", ["$scope", "$timeout", "$dialogue", "api", function($scope, $timeout, $dialogue, api){
+	.controller("uploader-controller", ["$scope", "$timeout", "$dialogue", "api", "folder", function($scope, $timeout, $dialogue, api, folder){
 		let scope = $scope
 
 		$timeout(function(){
@@ -74,7 +74,7 @@ angular.module("uploader-app")
 
 		scope.upload = function(){
 			uploading = true
-			api.upload(scope.files).then(function(){
+			api.upload(folder, scope.files).then(function(){
 				uploading = false
 			})
 		}

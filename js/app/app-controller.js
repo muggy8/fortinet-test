@@ -63,7 +63,10 @@ angular.module("uploader-app")
 			dialogue({
 				templateUrl: "js/app/uploader/template.html",
 				controller: "uploader-controller",
-				autoClose: false
+				autoClose: false,
+				resolve: {
+					folder: getPathUrl
+				}
 			}).then(function(yay){
 				scope.listFiles()
 			}, function(err){
