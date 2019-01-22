@@ -11,3 +11,12 @@
 	background-color: var(--color-background);
 	border-radius: var(--base-border-radius);
 }
+
+table {
+	border-collapse: collapse;
+	margin: var(--responsive-padding);
+}
+table td,
+table th {
+	padding: var(--responsive-padding);
+}

@@ -34,6 +34,33 @@
 					<button class="grow">Upload File</button>
 				</div>
 			</nav>
+
+			<table>
+				<thead>
+					<tr>
+						<th>
+							Name
+						</th>
+						<th>
+							Actions
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="content in filesList" ng-class="{
+						'bg-secondary': $even
+					}">
+						<td>
+							<a href="#">{{content.name}}</a>
+						</td>
+						<td class="text-right">
+							<a href="#" class="block inline-mid">Download</a>
+							<a href="#" class="block inline-mid">Rename</a>
+							<a href="#" class="block inline-mid">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</main>
 
 		<link rel="stylesheet" href="css/framework.css">
