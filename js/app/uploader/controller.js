@@ -74,8 +74,7 @@ angular.module("uploader-app")
 
 		scope.upload = function(){
 			uploading = true
-			api.upload(folder, scope.files).then(function(){
-				uploading = false
+			return api.upload(folder, scope.files).then(function(){
 				scope.close()
 			}, function(errors){
 				// something happened with the results and we now have a some errors.
@@ -90,6 +89,8 @@ angular.module("uploader-app")
 				scope.files = scope.files.filter(function(file){
 					return file.progress === 0
 				})
+
+				uploading = false
 			})
 		}
 
