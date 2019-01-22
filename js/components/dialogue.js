@@ -52,7 +52,7 @@ angular.module("components")
 
 					let linkFn = $compile(`
 						<div class="dialogue-backdrop flex vhcenter" ng-click="reject('closed')">
-							<div class="dialogue-body padding">
+							<div class="dialogue-body padding" ng-click="$event.stopImmediatePropagation()">
 								${template}
 							</div>
 						</div>
