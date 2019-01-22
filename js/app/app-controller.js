@@ -70,7 +70,7 @@ angular.module("uploader-app")
 			}).then(function(){
 				// users says they're sure about the deletion sooo...
 
-				return api.delete(getPathUrl() + dirOrFile.name)
+				return api.delete(getPathUrl(), dirOrFile.name)
 			}, function(cancled){
 				// good call not deleteing things
 			}).then(function(){

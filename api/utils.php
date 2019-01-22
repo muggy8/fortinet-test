@@ -29,6 +29,21 @@ function isGet($exclusive){
 	}
 }
 
+function isDelete($exclusive){
+	$isDelete = $_SERVER['REQUEST_METHOD'] === 'DELETE';
+
+	if (!$isDelete && $exclusive) {
+	    http_response_code(404);
+		exit();
+	}
+	else if ($isDelete){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 define("CONTENT_FOLDER", dirname(__DIR__) . "/files");
 define("METADATA_FILE", ".META_STORE");
 

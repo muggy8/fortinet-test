@@ -69,10 +69,10 @@ angular.module("uploader-app")
 			})
 		}
 
-		api.delete = function(fileName){
+		api.delete = function(filePath, fileName){
 			return $http({
 				method: "DELETE",
-				url: `${apiUrl}/delete.php?file=${fileName}`,
+				url: `${apiUrl}/delete.php?path=${filePath}&file=${fileName}`,
 			})
 		}
 
