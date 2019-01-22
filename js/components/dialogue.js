@@ -5,7 +5,7 @@ angular.module("components")
 
 			// fetch the template URL if defined
 			if (!template && templateUrl){
-				$http.get(templateUrl, {cache: true}).then(function(result){
+				toResolve = $http.get(templateUrl, {cache: true}).then(function(result){
 					template = result.data
 				})
 			}
