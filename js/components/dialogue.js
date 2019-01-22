@@ -1,7 +1,7 @@
 "use strict"
 angular.module("components")
 	.factory("dialogue", ["$http", "$q", "$compile", "$controller", "$rootScope", function($http, $q, $compile, $controller, $rootScope){
-		return function({template, controller, templateUrl, resolve}){
+		return function({template, controller, templateUrl, resolve, autoClose}){
 			let toResolve = $q.resolve()
 
 			// fetch the template URL if defined
@@ -47,12 +47,14 @@ angular.module("components")
 						reject(reason)
 					}
 
+					resolve.$dialogue.$autoClose = typeof autoClose !== "boolean" || autoClose
+
 					resolve.$scope = resolve.$dialogue.$new()
 
 					let controllerInstance = $controller(controller || function(){}, resolve)
 
 					let linkFn = $compile(`
-						<div class="dialogue-backdrop flex vhcenter" ng-click="reject('closed')">
+						<div class="dialogue-backdrop flex vhcenter" ng-click="$autoClose && reject('closed')">
 							<div class="dialogue-body padding" ng-click="$event.stopImmediatePropagation()">
 								${template}
 							</div>
