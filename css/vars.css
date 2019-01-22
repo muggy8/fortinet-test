@@ -7,7 +7,7 @@ html {
 	--color-black: #000;
 
 	--color-primary: #4C9F2D;
-	--color-secondary: #ACD4E3;
+	--color-secondary: #DFF6FF;
 	--color-clear: rgba(0, 0, 0, 0);
 
 	/* now we've set up the basic background we can go and setup some other variables based on these */
@@ -58,7 +58,7 @@ button-{{color}} will change the button to a color and the text to match the col
 	--color-background: var(--color-primary);
 	--color-text: var(--color-white);
 	--color-button: var(--color-white);
-	--color-button-text: var(--color-secondary);
+	--color-button-text: var(--color-dark);
 }
 .bg-secondary {
 	--color-background: var(--color-secondary);
@@ -104,7 +104,7 @@ button-{{color}} will change the button to a color and the text to match the col
 }
 .button-primary {
 	--color-button: var(--color-primary);
-	--color-button-text: var(--color-secondary);
+	--color-button-text: var(--color-dark);
 }
 .button-secondary {
 	--color-button: var(--color-secondary);
