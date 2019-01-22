@@ -19,8 +19,6 @@ angular.module("uploader-app")
 					uploadEventHandlers: {
 						progress: function(event){
 							fileModel.progress = Math.floor((event.loaded / event.total) * 100)
-
-							console.log(event, fileModel.progress)
 						}
 					}
 				}

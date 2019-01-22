@@ -58,11 +58,12 @@ angular.module("uploader-app")
 
 		}
 
-		api.rename = function(oldName, newName){
+		api.rename = function(path, oldName, newName){
 			return $http({
 				method: "POST",
 				url: `${apiUrl}/rename.php`,
 				data: {
+					path: path,
 					oldName: oldName,
 					newName: newName
 				}

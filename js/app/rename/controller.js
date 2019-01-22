@@ -4,6 +4,7 @@ angular.module("uploader-app")
 		let scope = $scope
 
 		scope.fileName = currentName
+		scope.originalName = currentName
 
 		scope.validPaturn = /^[a-zA-Z0-9\-\_\(\)\ \+\.]{1,60}$/
 

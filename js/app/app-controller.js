@@ -36,14 +36,15 @@ angular.module("uploader-app")
 			}, function(err){
 				// this is to catch the dialogue rejections
 				console.warn(err)
-			}).catch(function(err){
+			}).then(function(){
+				return scope.listFiles()
+			}, function(err){
 				// this is to catch the http errors
 				return dialogue({
 					template: err.data.message
 				})
 			}).catch(function(err){
-				// this is to catch the dialogue rejections
-				console.warn(err)
+				// this is to catch the dialogue closed
 			})
 		}
 
@@ -93,7 +94,17 @@ angular.module("uploader-app")
 						return dirOrFile.name
 					}
 				}
-			}).then(console.log, function(cancled){
+			}).then(function(newFileName){
+				return api.rename(getPathUrl(), dirOrFile.name, newFileName)
+			}, function(closed){
+				// ok
+			}).then(function(){
+				return scope.listFiles()
+			}, function(err){
+				return dialogue({
+					template: err.data.message
+				})
+			}).catch(function(closed){
 				// ok
 			})
 		}
