@@ -34,7 +34,7 @@ angular.module("components")
 			return toResolve.then(function(){
 				return $q(function(accept, reject){
 
-					resolve.$dialogue = Object.create($rootScope)
+					resolve.$dialogue = $rootScope.$new()
 
 					resolve.$dialogue.accept = function(result){
 						element.remove()
@@ -46,7 +46,7 @@ angular.module("components")
 						reject(reason)
 					}
 
-					resolve.$scope = Object.create(resolve.$dialogue)
+					resolve.$scope = resolve.$dialogue.$new()
 
 					let controllerInstance = $controller(controller || function(){}, resolve)
 
