@@ -59,4 +59,17 @@ angular.module("uploader-app")
 			scope.listFiles()
 		}
 
+		scope.openUploader = function(){
+			dialogue({
+				templateUrl: "js/app/uploader/template.html",
+				controller: "uploader-controller",
+				autoClose: false
+			}).then(function(yay){
+				scope.listFiles()
+			}, function(err){
+				// user cancel the upload
+				console.warn(err)
+			})
+		}
+
 	}])
