@@ -22,10 +22,17 @@ angular.module("uploader-app")
 
 		api.upload = function(files){
 			return $q.all(files.map(function(file){
+
+				let formData = new FormData()
+				formData.append("file", file.file)
+				formData.append("name", file.name)
 				return $http({
+					headers: {
+						"Content-Type": undefined
+					},
 					method: "POST",
 					url: `${apiUrl}/upload.php`,
-					data: file.file,
+					data: formData,
 					uploadEventHandlers: file.uploadEventHandlers
 				})
 			}))
