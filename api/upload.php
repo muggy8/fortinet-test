@@ -28,20 +28,21 @@ if ($newName){
 	$containingFolderMetaDataPath = $fileFolder . METADATA_FILE;
 
 	if (!file_exists($containingFolderMetaDataPath)){
+		$containingFolderMetaData = [];
 		file_put_contents(
 			$containingFolderMetaDataPath,
-			json_encode($containingFolderMetaData = (object)[])
+			json_encode((object)$containingFolderMetaData)
 		);
 	}
 	else{
-		$containingFolderMetaData = json_decode(file_get_contents($containingFolderMetaDataPath));
+		$containingFolderMetaData = json_decode(file_get_contents($containingFolderMetaDataPath), true);
 	}
 
 	$containingFolderMetaData[$newName] = $originalName;
 	file_put_contents(
 		$containingFolderMetaDataPath,
 		json_encode($containingFolderMetaData)
-	);
+	);	
 }
 
 // ok now we're done with all that, we can then proceed to do the uploader things
