@@ -46,9 +46,7 @@ if ($newName){
 
 // ok now we're done with all that, we can then proceed to do the uploader things
 $uploader = new Uploader();
-
-$uploadStatus = $uploader->upload($_FILES["files"], [
-	"required" => true,
+$uploadStatus = $uploader->upload($file, [
 	"extensions" => [
 		"css",
 		"html",
@@ -61,14 +59,11 @@ $uploadStatus = $uploader->upload($_FILES["files"], [
 	"perms" => 766
 ]);
 
-$output = [
-	"uploadedTo" => $fileFolder,
-	"uploadStatus" => $uploadStatus
-];
+$output = [];
 if($uploadStatus['hasErrors']){
     $output["debug"] = $uploadStatus['errors'];
 	$output["message"] = "Upload failed";
 	http_response_code(422);
 }
 
-echo json_encode($output);
+echo json_encode((object)$output);
