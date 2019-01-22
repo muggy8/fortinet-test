@@ -6,7 +6,13 @@
 		</div>
 		<input type="file" id="file-select" multiple accept=".css,.js,.html,.php" class="clickable-overlay" ondrop="this.scope.externals.fileDrop(event)" onchange="this.scope.externals.selectChange(event, this)"/>
 	</div>
-	<div>
-		list goes here...
+	<div ng-repeat="file in files" class="margin-top">
+		<div>
+			<strong>Original Name:</strong> {{file.file.name}}
+		</div>
+		<div class="flex vcenter">
+			<strong>Renamed:</strong>
+			<input ng-model="file.name" class="grow margin-left"/>
+		</div>
 	</div>
 </div>
