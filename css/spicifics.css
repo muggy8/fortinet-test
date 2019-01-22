@@ -16,7 +16,3 @@ table {
 	border-collapse: collapse;
 	margin: var(--responsive-padding);
 }
-table td,
-table th {
-	padding: var(--responsive-padding);
-}
