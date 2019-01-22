@@ -32,7 +32,7 @@ angular.module("uploader-app")
 					currentContents: scope.listFiles
 				}
 			}).then(function(fileName){
-				return api.createFolder(getPathUrl, fileName)
+				return api.createFolder(getPathUrl(), fileName)
 			}, function(err){
 				console.warn(err)
 			})

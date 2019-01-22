@@ -15,7 +15,7 @@ angular.module("uploader-app")
 				method: "POST",
 				url: `${apiUrl}/create-folder.php`,
 				data: {
-					path: `${path}/${name}`
+					path: `${path}/${name}`.replace(/(\/\/)/g, "/")
 				}
 			})
 		}
