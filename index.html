@@ -23,15 +23,17 @@
 			<nav class="flex-mid bg-primary padding-1">
 				<div class="grow flex vcenter font-1.5em">
 					Path: /
-					<span ng-repeat="part in pathParts">
-						<a>{{part}}/</a>
-					</span>
+					<span ng-repeat="part in pathParts">{{part}}/</span>
+
+
 				</div>
 				<div class="padding-1 font-0.5em font-0-mid"></div><!-- spacer -->
 				<div class="flex">
-					<button class="grow" ng-click="createFolder()">Create Folder</button>
+					<button ng-show="pathParts.length" ng-click="backOne()" class="basis">Back</button>
 					<span class="padding-left-1"></span>
-					<button class="grow">Upload File</button>
+					<button class="basis" ng-click="createFolder()">Create Folder</button>
+					<span class="padding-left-1"></span>
+					<button class="basis">Upload File</button>
 				</div>
 			</nav>
 
@@ -51,7 +53,7 @@
 						'bg-secondary': $even
 					}">
 						<td>
-							<a href="#" ng-click="navigate(content)">{{content.name}}</a>
+							<a href="#" ng-click="open(content)">{{content.name}}</a>
 						</td>
 						<td class="text-right">
 							<a href="#" class="block inline-mid" ng-show="content.type === 'file'">Download</a>

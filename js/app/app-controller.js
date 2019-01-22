@@ -47,11 +47,16 @@ angular.module("uploader-app")
 			})
 		}
 
-		scope.navigate = function(dirOrFile){
+		scope.open = function(dirOrFile){
 			if (dirOrFile.type === "dir"){
 				scope.pathParts.push(dirOrFile.name)
 				scope.listFiles()
 			}
+		}
+
+		scope.backOne = function(){
+			scope.pathParts.splice(scope.pathParts.length - 1, 1)
+			scope.listFiles()
 		}
 
 	}])
