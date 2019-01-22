@@ -15,7 +15,7 @@ angular.module("components")
 				toResolve = Object.getOwnPropertyNames(resolve)
 					.reduce(function(lastPromise, resolveKey){
 						return lastPromise.then(function(){
-							return resolve[resolveKey]
+							return resolve[resolveKey]()
 						}).then(function(result){
 							if (result.data){
 								resolve[resolveKey] = result.data
