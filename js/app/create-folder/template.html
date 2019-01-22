@@ -3,7 +3,7 @@
 		Folder Name:
 	</div>
 	<div>
-		<input ng-model="fileName" type="text" ng-keyup="$event.keyCode === 13 && fileNameInputted()"/>
+		<input ng-model="fileName" type="text" ng-keyup="$event.keyCode === 13 && fileNameInputted()" load-focus/>
 		<button ng-show="fileName && validPaturn.test(fileName)" ng-click="fileNameInputted()">Ok</button>
 	</div>
 </div>

@@ -1,3 +1,4 @@
+"use strict"
 angular.module("components")
 	.factory("dialogue", ["$http", "$q", "$compile", "$controller", "$rootScope", function($http, $q, $compile, $controller, $rootScope){
 		return function({template, controller, templateUrl, resolve}){
