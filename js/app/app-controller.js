@@ -1,6 +1,6 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("app-controller", ["$scope", "api", "dialogue", "$timeout", function($scope, api, dialogue, $timeout){
+	.controller("app-controller", ["$scope", "api", "dialogue", function($scope, api, dialogue){
 		let scope = $scope
 
 		scope.pathParts = []
@@ -23,12 +23,7 @@ angular.module("uploader-app")
 			dialogue({
 				template: "<div>placeholder</div>",
 				controller: function($scope, $dialogue){
-					console.log("controller instantiated", arguments)
-					$scope.foo = "bar"
 
-					$timeout(function(){
-						$dialogue.accept("foo")
-					}, 5000)
 				}
 			})
 		}

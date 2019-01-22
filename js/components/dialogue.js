@@ -33,26 +33,32 @@ angular.module("components")
 			// everything should be resolved now
 			return toResolve.then(function(){
 				return $q(function(accept, reject){
-					resolve.$scope = Object.create($rootScope)
 
-					resolve.$dialogue = {
-						accept: function(result){
-							element.remove()
-							accept(result)
-						},
-						reject: function(reason){
-							element.remove()
-							reject(reason)
-						}
+					resolve.$dialogue = Object.create($rootScope)
+
+					resolve.$dialogue.accept = function(result){
+						element.remove()
+						accept(result)
 					}
+
+					resolve.$dialogue.reject = function(reason){
+						element.remove()
+						reject(reason)
+					}
+
+					resolve.$scope = Object.create(resolve.$dialogue)
 
 					let controllerInstance = $controller(controller || function(){}, resolve)
 
-					let linkFn = $compile(template)
+					let linkFn = $compile(`
+						<div class="dialogue-backdrop flex vhcenter" ng-click="reject('closed')">
+							<div class="dialogue-body padding">
+								${template}
+							</div>
+						</div>
+					`)
 
 					let element = linkFn(resolve.$scope)
-
-					console.log(resolve.$scope, element)
 
 		 			angular.element(document.body).append(element)
 				})
