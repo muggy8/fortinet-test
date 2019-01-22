@@ -59,3 +59,5 @@ if (file_exists($targetedFile) && !is_dir($targetedFile)){
 		json_encode($fileFolderMeta)
 	);
 }
+
+rename($targetedFile, $targetedFileNewName);
