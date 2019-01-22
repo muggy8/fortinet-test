@@ -6,17 +6,19 @@
 		</div>
 		<input type="file" id="file-select" multiple accept=".css,.js,.html,.php" class="clickable-overlay" ondrop="this.scope.externals.fileDrop(event)" onchange="this.scope.externals.selectChange(event, this)"/>
 	</div>
-	<div ng-repeat="file in files" class="margin-top">
-		<div>
-			<strong>Original Name:</strong> {{file.file.name}}
-		</div>
+	<div ng-repeat="file in files" class="margin-top margin-bottom">
 		<div class="flex vcenter">
-			<strong>Renamed:</strong>
-			<input ng-model="file.name" class="grow margin-left"/>
+			<strong class="margin-right">File:</strong>
+			<div class="grow" ng-show="!file.renaming && file.progress !== 100" ng-dblclick="file.renaming = true">
+				{{file.name}}
+			</div>
+			<input ng-model="file.name" class="grow margin-right" ng-show="file.renaming && file.progress !== 100" ng-keyup="$event.keyCode === 13 && (file.renaming = false)"/>
+			<button class="font-0.75em" ng-click="file.renaming = !file.renaming" ng-show="file.progress !== 100">Rename</button>
 		</div>
 	</div>
-	<div class="text-right margin-top-1">
-		<button ng-click="upload()" ng-show="canShowUploadButton()">Upload</button>
+	<div class="margin-top flex">
 		<button ng-click="close()">Close</button>
+		<div class="grow"></div>
+		<button ng-click="upload()" ng-show="canShowUploadButton()">Upload</button>
 	</div>
 </div>
