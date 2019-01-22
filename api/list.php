@@ -6,6 +6,10 @@ $path = CONTENT_FOLDER . $_GET["path"];
 
 if (!file_exists($path)){
 	http_response_code(404);
+	echo json_encode([
+		"message" => "Directory Not Found"
+	]);
+	exit();
 }
 
 // get all the contents
