@@ -16,3 +16,26 @@ table {
 	border-collapse: collapse;
 	margin: var(--responsive-padding);
 }
+
+.clickable-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	min-width: 1px;
+	min-height: 1px;
+	z-index: 1;
+}
+
+.upload-dropzone {
+	border-radius: calc(var(--base-border-radius) * 2);
+	border-width: var(--base-border-radius);
+	border-style: dashed;
+	border-color: var(--color-text);
+}
+
+.upload-dropzone.active {
+	border-color: var(--color-primary);
+}
