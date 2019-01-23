@@ -20,6 +20,7 @@ if (file_exists($fileFolderMetaPath)){
 }
 
 $currentDate = date("Y-m-d_h:i:sA");
+// this time zone is the server's time zone but the assumption is that the server would be set to the same time zone as the client since this app is probably a local server management tool. should the requeests be authenticated, the user's timezone could be saved and be used while calculating this. 
 
 if (file_exists($targetedFile) && !is_dir($targetedFile)){
 	header("Content-Description: File Transfer");

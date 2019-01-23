@@ -7,7 +7,7 @@ angular.module("uploader-app")
 
 		scope.filesList = []
 
-		function getPathUrl(){
+		let getPathUrl = scope.getPathUrl = function(){
 			return scope.pathParts.reduce(function(totalUrl, currentPart){
 				return totalUrl + `${currentPart}/`
 			}, "/")

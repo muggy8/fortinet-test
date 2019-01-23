@@ -29,8 +29,8 @@
 				</div>
 				<div class="padding-1 font-0.5em font-0-mid"></div><!-- spacer -->
 				<div class="flex">
-					<button ng-show="pathParts.length" ng-click="backOne()" class="basis">Back</button>
-					<span ng-show="pathParts.length" class="padding-left-1"></span>
+					<!-- <button ng-show="pathParts.length" ng-click="backOne()" class="basis">Back</button>
+					<span ng-show="pathParts.length" class="padding-left-1"></span> -->
 					<button class="basis" ng-click="createFolder()">Create Folder</button>
 					<span class="padding-left-1"></span>
 					<button class="basis" ng-click="openUploader()">Upload File</button>
@@ -39,31 +39,40 @@
 
 			<table>
 				<thead>
-					<tr>
-						<th>
+					<tr class="text-left">
+						<th class="padding">
 							Name
 						</th>
 						<th>
 							Original Name
 						</th>
-						<th>
+						<th class="text-right padding">
 							Actions
 						</th>
 					</tr>
 				</thead>
 				<tbody>
+					<tr ng-show="pathParts.length" class="bg-secondary">
+						<td class="padding-left-1">
+							<a href="#" class="block" ng-click="backOne()">..</a>
+						</td>
+						<td></td>
+						<td>
+							<span class="margin-1 block inline-mid">&nbsp;</span>
+						</td>
+					</tr>
 					<tr ng-repeat="content in filesList" ng-class="{
-						'bg-secondary': $even
+						'bg-secondary': !pathParts.length ? $even : $odd
 					}">
 						<td class="padding-left-1">
-							<a href="#" ng-click="open(content)" class="inline block" ng-show="content.type === 'dir'">{{content.name}}</a>
+							<a href="#" ng-click="open(content)" class="block" ng-show="content.type === 'dir'">{{content.name}}</a>
 							<span ng-show="content.type === 'file'">{{content.name}}</span>
 						</td>
 						<td>
 							<span ng-show="content.type === 'file'">{{content.srcName}}</span>
 						</td>
 						<td class="text-right">
-							<a href="#" class="margin-1 block inline-mid" ng-show="content.type === 'file'">Download</a>
+							<a href="/api/download.php?path={{getPathUrl()}}&file={{content.name}}" target="_blank" class="margin-1 block inline-mid" ng-show="content.type === 'file'">Download</a>
 							<a href="#" class="margin-1 block inline-mid" ng-click="rename(content)">Rename</a>
 							<a href="#" class="margin-1 block inline-mid" ng-click="delete(content)">Delete</a>
 						</td>
