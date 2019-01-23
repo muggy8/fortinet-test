@@ -39,3 +39,26 @@ table {
 .upload-dropzone.active {
 	border-color: var(--color-primary);
 }
+
+#drop-receiver {
+	background-color: rgba(0, 0, 0, 0.8);
+	opacity: 1;
+}
+#drop-receiver::after {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	content: "Drop Files Here";
+	font-size: 4em;
+	color: var(--color-secondary);
+
+	position: absolute;
+	left: var(--base-padding);
+	right: var(--base-padding);
+	top: var(--base-padding);
+	bottom: var(--base-padding);
+
+	border-radius: calc(var(--base-padding) / 2);
+	border-radius: calc(var(--base-padding) * 2);
+	border-style: dashed;
+}
