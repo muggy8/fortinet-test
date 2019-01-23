@@ -36,24 +36,24 @@ angular.module("uploader-app")
 
 				scope.externals.draggingFiles = false
 				scope.$apply()
-				
+
 				scope.openUploader(files)
 
 			},
 			filesEnterMain(event){
-				console.log("Enter", event.target)
-
 				event.preventDefault()
 				event.stopPropagation()
+
 				scope.externals.draggingFiles = true
+
 				scope.$apply()
 			},
 			filesLeaveZone(event){
 				event.preventDefault()
 				event.stopPropagation()
 
-				console.log("Leave", event.target)
 				scope.externals.draggingFiles = false
+				
 				scope.$apply()
 			}
 		}
