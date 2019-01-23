@@ -1,11 +1,62 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("app-controller", ["$scope", "api", "dialogue", function($scope, api, dialogue){
+	.controller("app-controller", ["$scope", "$timeout", "api", "dialogue", function($scope, $timeout, api, dialogue){
 		let scope = $scope
 
 		scope.pathParts = []
 
 		scope.filesList = []
+
+		$timeout(function(){
+			// do this on the next tick once the view has been appended
+			document.querySelector("[ng-controller='app-controller']").scope = scope
+
+
+			function defaultPreventer(ev){
+				ev.preventDefault()
+			}
+
+			let dropReciever = document.getElementById("drop-receiver")
+
+			dropReciever.scope = scope
+
+			// allow dropping to happen here
+			dropReciever.addEventListener("dragenter", defaultPreventer)
+
+			dropReciever.addEventListener("dragover", defaultPreventer)
+		})
+
+		scope.externals = {
+			draggingFiles: false,
+			dropFiles: function(event){
+				event.preventDefault()
+				event.stopPropagation()
+
+				let files = event.dataTransfer.files
+
+				scope.externals.draggingFiles = false
+				scope.$apply()
+				
+				scope.openUploader(files)
+
+			},
+			filesEnterMain(event){
+				console.log("Enter", event.target)
+
+				event.preventDefault()
+				event.stopPropagation()
+				scope.externals.draggingFiles = true
+				scope.$apply()
+			},
+			filesLeaveZone(event){
+				event.preventDefault()
+				event.stopPropagation()
+
+				console.log("Leave", event.target)
+				scope.externals.draggingFiles = false
+				scope.$apply()
+			}
+		}
 
 		let getPathUrl = scope.getPathUrl = function(){
 			return scope.pathParts.reduce(function(totalUrl, currentPart){
@@ -114,13 +165,16 @@ angular.module("uploader-app")
 			scope.listFiles()
 		}
 
-		scope.openUploader = function(){
+		scope.openUploader = function(files){
 			dialogue({
 				templateUrl: "js/app/uploader/template.html",
 				controller: "uploader-controller",
 				autoClose: false,
 				resolve: {
-					folder: getPathUrl
+					folder: getPathUrl,
+					files: function(){
+						return files
+					}
 				}
 			}).then(function(yay){
 				scope.listFiles()

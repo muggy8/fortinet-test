@@ -19,13 +19,11 @@
 	</head>
 	<body>
 
-		<main ng-app="uploader-app" ng-controller="app-controller" class="flex column" ng-cloak>
+		<main ng-app="uploader-app" ng-controller="app-controller" class="flex column relative" ng-cloak ondragenter="this.scope.externals.filesEnterMain(event)">
 			<nav class="flex-mid bg-primary padding-1">
 				<div class="grow flex vcenter font-1.5em">
 					Path: /
 					<span ng-repeat="part in pathParts">{{part}}/</span>
-
-
 				</div>
 				<div class="padding-1 font-0.5em font-0-mid"></div><!-- spacer -->
 				<div class="flex">
@@ -79,6 +77,10 @@
 					</tr>
 				</tbody>
 			</table>
+
+			<div id="drop-receiver" ng-class="{
+				'clickable-overlay': externals.draggingFiles
+			}" ng-show="externals.draggingFiles" ondrop="this.scope.externals.dropFiles(event)" ondragleave="this.scope.externals.filesLeaveZone(event)"></div>
 		</main>
 
 		<link rel="stylesheet" href="css/framework.css">

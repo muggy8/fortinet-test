@@ -1,6 +1,6 @@
 "use strict"
 angular.module("uploader-app")
-	.controller("uploader-controller", ["$scope", "$timeout", "$dialogue", "api", "folder", "dialogue", function($scope, $timeout, $dialogue, api, folder, dialogue){
+	.controller("uploader-controller", ["$scope", "$timeout", "$dialogue", "api", "folder", "dialogue", "files", function($scope, $timeout, $dialogue, api, folder, dialogue, files){
 		let scope = $scope
 
 		$timeout(function(){
@@ -31,7 +31,7 @@ angular.module("uploader-app")
 				scope.files.push(fileModel)
 			})
 
-			if (rejected){
+			if (rejected.length){
 				dialogue({
 					template: rejected.reduce(function(message, file){
 						return `${message}<br>${file.name}`
@@ -40,6 +40,10 @@ angular.module("uploader-app")
 					// ok
 				})
 			}
+		}
+
+		if (files){
+			addFiles(files)
 		}
 
 		scope.externals = {
