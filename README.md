@@ -4,7 +4,7 @@ This is the app building test for Fortinet.
 ## Setup
 The contents of this repository is to be placed in the htdocs folder of a apache server. The server must have PHP running as well. A folder called deps needs to be created and the uploader php file is to be placed in there (the class.uploader.php file) if it's not already.
 
-## Solution
+## Solution A
 This app is built upon AngularJS because I am fairly familiar with the framework and does not require a complex build process unlike React. I also considered using my own personal library that I build but it still is fairly unrefined and would need a few more iterations.
 
 As this app is built using Angular, this app is functionally a Single Page Application. As a result, all interactions with the PHP code is done though AJAX requests.
@@ -19,4 +19,12 @@ Another alternative to doing this is to store information within a database. How
 
 The CSS of this project is a bit complicated. The idea is to use the custom variables of CSS and the functionality of CSS allowing properties to be overwritten to create a simple yet complex set of rule that interacts with each other to always produce a look and feel that is consistent with the basic styles set out by the design. Currently the only thing that uses this heavily is the button stylings. This button is able to respond to various contexts and remain consistent without the dev having to remember which button style works with a certain backgrounds. This also takes away the need to choose which button works best for any particular background which results in inconsistent button looks across the UI. Of course this method can be extended to other components such as links and texts.
 
-Finally, I attempted to add as much error catching as I can to make it fairly easy to realize what went wrong while using the app. Additionally there are some very well defined requirements for what is and isn't allowed and this made it easier automatically fix some user errors such as excluding incompatible file types and alerting the user of such. However I would say I am not able to find all of the user errors that may happen so this represents the best I can find of possible user errors. 
+Finally, I attempted to add as much error catching as I can to make it fairly easy to realize what went wrong while using the app. Additionally there are some very well defined requirements for what is and isn't allowed and this made it easier automatically fix some user errors such as excluding incompatible file types and alerting the user of such. However I would say I am not able to find all of the user errors that may happen so this represents the best I can find of possible user errors.
+
+## Solution B
+Solution B is found under the taskb folder. Once this project is setup you can visit [http://localhost/taskb/](http://localhost/taskb/) to view my answer for task B
+
+There really isn't much to say about this task as it's more of a math puzzle than anything.
+
+## Git
+Should you be interested in the dev process of this code base. Feel free to visit [https://github.com/muggy8/fortinet-test](https://github.com/muggy8/fortinet-test) to see the git logs.
