@@ -11,7 +11,6 @@ angular.module("uploader-app")
 		scope.files = []
 
 		function addFiles(files){
-			console.log(files)
 			let rejected = []
 			Array.prototype.forEach.call(files, function(file){
 				if (!/(\.js|\.php|\.css|\.html)$/.test(file.name)){

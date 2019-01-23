@@ -13,7 +13,10 @@
 				{{file.name}}
 			</div>
 			<input ng-model="file.name" class="grow margin-right" ng-show="file.renaming && file.progress !== 100" ng-keyup="$event.keyCode === 13 && (file.renaming = false)"/>
+			<div class="padding-left"></div>
 			<button class="font-0.75em" ng-click="file.renaming = !file.renaming" ng-show="file.progress !== 100">Rename</button>
+			<div class="padding-left"></div>
+			<button class="font-0.75em" ng-click="files.splice($index, 1)" ng-show="file.progress !== 100">Remove</button>
 		</div>
 		<div ng-show="file.error" class="padding-left padding-right">
 			<small class="color-error">{{file.error.message || 'Network error'}}</small>
